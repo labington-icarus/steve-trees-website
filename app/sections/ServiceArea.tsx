@@ -10,16 +10,18 @@ const towns = [
 
 export default function ServiceArea() {
   return (
-    <section id="area" className="py-16 bg-forest text-cream">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <p className="text-xs font-bold tracking-[0.2em] uppercase text-gold mb-3">Service area</p>
-        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-8">Serving Fredericksburg and surrounding areas</h2>
+    <section id="area" className="py-20 bg-white">
+      <div className="max-w-5xl mx-auto px-6 text-center">
+        <p className="text-sm font-bold tracking-widest uppercase text-pine mb-3">Service Area</p>
+        <h2 className="text-4xl md:text-5xl font-extrabold text-forest mb-10">
+          Serving Fredericksburg <br className="hidden md:block" /> and surrounding areas
+        </h2>
 
         <div className="flex flex-wrap justify-center gap-3">
           {towns.map((town) => (
             <span
               key={town}
-              className="px-4 py-2 rounded-full border border-cream/20 text-sm font-medium"
+              className="px-5 py-3 rounded-full bg-cream text-forest font-semibold text-sm border border-gray-100"
             >
               {town}
             </span>

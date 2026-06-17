@@ -6,30 +6,35 @@ import { imgSrc } from "@/app/lib/imgSrc";
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-cream py-12">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="text-center md:text-left">
-          <Image
-            src={imgSrc("/logo.png")}
-            alt="Steve's Trees"
-            width={192}
-            height={48}
-            className="h-12 w-auto mb-3 mx-auto md:mx-0"
-          />
-          <p className="text-sm text-cream/70">
-            Tree removal, trimming, stump grinding, and hardscaping in Fredericksburg, VA.
-          </p>
+    <footer className="bg-ink text-white py-12">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+          <div className="text-center md:text-left">
+            <Image
+              src={imgSrc("/logo.png")}
+              alt="Steve's Trees"
+              width={192}
+              height={48}
+              className="h-12 w-auto mb-3 mx-auto md:mx-0"
+            />
+            <p className="text-white/60">
+              Tree removal, trimming, stump grinding, and hardscaping in Fredericksburg, VA.
+            </p>
+          </div>
+
+          <div className="text-center md:text-right">
+            <a
+              href="tel:5406426612"
+              className="inline-flex items-center gap-2 text-xl font-bold hover:text-lime transition"
+            >
+              <Phone size={20} />
+              (540) 642-6612
+            </a>
+          </div>
         </div>
 
-        <div className="text-center md:text-right">
-          <a
-            href="tel:5406426612"
-            className="inline-flex items-center gap-2 text-xl font-bold hover:text-gold transition"
-          >
-            <Phone size={20} />
-            (540) 642-6612
-          </a>
-          <p className="text-sm text-cream/50 mt-2">© 2026 Steve's Trees. All rights reserved.</p>
+        <div className="border-t border-white/10 pt-8 text-center md:text-left text-sm text-white/50">
+          © {new Date().getFullYear()} Steve's Trees. All rights reserved.
         </div>
       </div>
     </footer>

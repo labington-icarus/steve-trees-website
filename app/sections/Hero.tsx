@@ -1,68 +1,66 @@
 "use client";
 
-import { Phone, Shield, Clock, MapPin } from "lucide-react";
+import { Phone, ArrowRight, Shield, Clock, MapPin } from "lucide-react";
 import Image from "next/image";
 import { imgSrc } from "@/app/lib/imgSrc";
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-cream">
-      <div className="relative z-10 max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center pt-24 pb-32">
-        <div>
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-gold mb-4">
-            Tree Removal & Hardscaping · Fredericksburg, VA
-          </p>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight mb-6">
-            Big trees.
-            <br />
-            <span className="text-pine">Safe</span> removal.
-            <br />
-            Clean yard.
+    <section id="hero" className="relative min-h-[90vh] flex items-center">
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={imgSrc("/job5.jpg")}
+          alt="Tree removal crew working over a house in Fredericksburg, VA"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest/95 via-forest/80 to-forest/40"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
+        <div className="max-w-2xl text-white">
+          <div className="inline-flex items-center gap-2 bg-lime text-ink px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <span>$100 Off Tree Services — Mention This Site</span>
+          </div>
+
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6">
+            Professional Tree Care in Fredericksburg
           </h1>
-          <p className="text-lg md:text-xl text-forest/80 max-w-lg mb-8 leading-relaxed">
-            Steve's crew handles tree trimming, removals, stump grinding, and hardscaping across Fredericksburg and surrounding areas.
+
+          <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-xl">
+            Tree removal, trimming, stump grinding, and hardscaping done safe, clean, and on time.
           </p>
 
-          <a
-            href="tel:5406426612"
-            className="inline-flex justify-center items-center gap-2 bg-gold text-ink px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 transition"
-          >
-            <Phone size={20} />
-            Call (540) 642-6612
-          </a>
-
-          <div className="flex flex-wrap items-center gap-4 text-sm font-semibold text-forest/70 mt-8">
-            <span className="inline-flex items-center gap-1.5">
-              <Shield size={16} /> Insured
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Clock size={16} /> Fast Response
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin size={16} /> Free Estimates
-            </span>
-          </div>
-        </div>
-
-        <div className="relative hidden lg:block h-[70vh]">
-          <div className="absolute inset-0 rounded-[24px] overflow-hidden shadow-2xl">
-            <Image
-              src={imgSrc("/job5.jpg")}
-              alt="Tree removal over a house in Fredericksburg, VA"
-              fill
-              className="object-cover"
-              priority
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-forest/40 to-transparent" />
+          <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            <a
+              href="tel:5406426612"
+              className="inline-flex items-center justify-center gap-2 bg-lime text-ink px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 transition"
+            >
+              <Phone size={20} />
+              Call (540) 642-6612
+            </a>
+            <a
+              href="#quote"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition"
+            >
+              Get a Free Estimate
+              <ArrowRight size={18} />
+            </a>
           </div>
 
-          <div className="absolute bottom-6 left-6 right-6 bg-cream/95 backdrop-blur-sm rounded-2xl p-5 shadow-lg border border-forest/10">
-            <p className="text-xs font-bold uppercase tracking-wider text-gold mb-1">Limited-Time Offer</p>
-            <p className="text-xl font-extrabold text-forest">$100 Off Tree Services</p>
-            <p className="text-sm text-forest/70">
-              Mention this site when you call. Military & referral discounts also available.
-            </p>
+          <div className="flex flex-wrap gap-6 text-sm font-semibold text-white/80">
+            <span className="inline-flex items-center gap-2">
+              <Shield size={18} className="text-lime" /> Insured Crew
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Clock size={18} className="text-lime" /> Fast Response
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <MapPin size={18} className="text-lime" /> Local to Fredericksburg
+            </span>
           </div>
         </div>
       </div>

@@ -16,18 +16,20 @@ const gallery = [
 
 export default function Gallery() {
   return (
-    <section id="work" className="py-24 bg-forest text-cream">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="mb-14 text-center">
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-gold mb-3">Real work</p>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Proof we show up and get it done</h2>
+    <section id="work" className="py-24 bg-cream">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <p className="text-sm font-bold tracking-widest uppercase text-pine mb-3">Real Work</p>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-forest">
+            Proof we show up and get it done
+          </h2>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {gallery.map((item) => (
+          {gallery.map((item, idx) => (
             <div
-              key={item.src}
-              className="group relative aspect-square rounded-2xl overflow-hidden bg-forest/50"
+              key={idx}
+              className="group relative aspect-square rounded-xl overflow-hidden"
             >
               <Image
                 src={imgSrc(item.src)}
@@ -36,8 +38,9 @@ export default function Gallery() {
                 className="object-cover transition duration-500 group-hover:scale-105"
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
               />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center font-bold text-sm">
-                {item.label}
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent"></div>
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-bold">{item.label}</p>
               </div>
             </div>
           ))}
