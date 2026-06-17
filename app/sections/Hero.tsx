@@ -2,6 +2,7 @@
 
 import { Phone, Shield, Clock, MapPin } from "lucide-react";
 import Image from "next/image";
+import { imgSrc } from "@/app/lib/imgSrc";
 
 export default function Hero() {
   return (
@@ -46,7 +47,7 @@ export default function Hero() {
         <div className="relative hidden lg:block h-[70vh]">
           <div className="absolute inset-0 rounded-[24px] overflow-hidden shadow-2xl">
             <Image
-              src="/job5.jpg"
+              src={imgSrc("/job5.jpg")}
               alt="Tree removal over a house in Fredericksburg, VA"
               fill
               className="object-cover"

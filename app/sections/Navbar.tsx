@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import Image from "next/image";
+import { imgSrc } from "@/app/lib/imgSrc";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +24,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
           <Image
-            src="/logo.png"
+            src={imgSrc("/logo.png")}
             alt="Steve's Trees"
             width={160}
             height={40}

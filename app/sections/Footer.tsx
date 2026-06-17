@@ -2,6 +2,7 @@
 
 import { Phone } from "lucide-react";
 import Image from "next/image";
+import { imgSrc } from "@/app/lib/imgSrc";
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-center md:text-left">
           <Image
-            src="/logo.png"
+            src={imgSrc("/logo.png")}
             alt="Steve's Trees"
             width={192}
             height={48}

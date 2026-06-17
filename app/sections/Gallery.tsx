@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { imgSrc } from "@/app/lib/imgSrc";
 
 const gallery = [
   { src: "/job1.jpg", label: "Hauling" },
@@ -29,7 +30,7 @@ export default function Gallery() {
               className="group relative aspect-square rounded-2xl overflow-hidden bg-forest/50"
             >
               <Image
-                src={item.src}
+                src={imgSrc(item.src)}
                 alt={item.label}
                 fill
                 className="object-cover transition duration-500 group-hover:scale-105"
