@@ -1,49 +1,42 @@
-import { Shield, Clock, MapPin, Award } from "lucide-react";
+"use client";
+
+import { Shield, Clock, Award } from "lucide-react";
 
 const reasons = [
   {
     icon: Shield,
-    title: "Insured crew",
-    body: "Peace of mind knowing your property is protected while we work.",
+    title: "Insured Crew",
+    description: "Peace of mind knowing your property is protected while we work.",
   },
   {
     icon: Clock,
-    title: "Fast response",
-    body: "Same-week scheduling and quick turnaround on quotes.",
-  },
-  {
-    icon: MapPin,
-    title: "Local to Fredericksburg",
-    body: "We live here too — no out-of-town crews or surprise travel fees.",
+    title: "Fast, Local Response",
+    description: "Same-week scheduling and quick turnaround on quotes. No out-of-town crews.",
   },
   {
     icon: Award,
-    title: "Done right",
-    body: "Trees removed cleanly, stumps ground down, and yards left tidy.",
+    title: "Done Right",
+    description: "Trees removed cleanly, stumps ground down, and yards left tidy.",
   },
 ];
 
 export default function WhyUs() {
   return (
-    <section id="why" className="relative bg-[#1A4A32] px-6 py-24 text-[#F5E6C8] sm:py-32">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-12 text-center">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9A227]">
-            Why Steve's
-          </span>
-          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">
-            Built on referrals, not flashy ads
-          </h2>
+    <section id="why" className="py-24 bg-cream">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="mb-14 text-center">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-gold mb-3">Why Steve's</p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Built on referrals, not flashy ads</h2>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {reasons.map((r) => (
-            <div key={r.title} className="text-center">
-              <div className="mx-auto mb-4 inline-flex rounded-full bg-[#2E7D4A]/30 p-4">
-                <r.icon size={28} />
+        <div className="grid md:grid-cols-3 gap-8 text-center">
+          {reasons.map((reason) => (
+            <div key={reason.title}>
+              <div className="w-16 h-16 mx-auto rounded-full bg-pine/10 flex items-center justify-center text-forest mb-4">
+                <reason.icon size={28} />
               </div>
-              <h3 className="mb-2 text-lg font-bold">{r.title}</h3>
-              <p className="text-sm leading-relaxed opacity-80">{r.body}</p>
+              <h3 className="text-xl font-bold mb-2">{reason.title}</h3>
+              <p className="text-forest/75 text-sm leading-relaxed">{reason.description}</p>
             </div>
           ))}
         </div>

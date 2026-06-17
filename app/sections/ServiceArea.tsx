@@ -1,5 +1,3 @@
-import { MapPin } from "lucide-react";
-
 const towns = [
   "Fredericksburg",
   "Spotsylvania",
@@ -12,25 +10,17 @@ const towns = [
 
 export default function ServiceArea() {
   return (
-    <section id="area" className="relative bg-[#F5E6C8] px-6 py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl text-center">
-        <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9A227]">
-          Service area
-        </span>
-        <h2 className="mt-3 text-3xl font-extrabold text-[#1A4A32] sm:text-4xl">
-          Serving Fredericksburg and surrounding areas
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-[#1A4A32]/75">
-          If you're nearby and need tree work, call. If it's within a reasonable drive, we'll come out.
-        </p>
+    <section id="area" className="py-16 bg-forest text-cream">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <p className="text-xs font-bold tracking-[0.2em] uppercase text-gold mb-3">Service area</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-8">Serving Fredericksburg and surrounding areas</h2>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-3">
           {towns.map((town) => (
             <span
               key={town}
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#1A4A32]/15 bg-white/60 px-4 py-2 text-sm font-medium text-[#1A4A32]"
+              className="px-4 py-2 rounded-full border border-cream/20 text-sm font-medium"
             >
-              <MapPin size={14} />
               {town}
             </span>
           ))}

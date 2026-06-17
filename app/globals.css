@@ -1,35 +1,23 @@
 @import "tailwindcss";
 
-@theme inline {
-  --color-pine: #2E7D4A;
-  --color-forest: #1A4A32;
+@theme {
   --color-cream: #F5E6C8;
+  --color-forest: #1A4A32;
+  --color-pine: #2E7D4A;
   --color-gold: #C9A227;
-  --color-stone-950: #1c1917;
-  --color-stone-50: #fafaf9;
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-ink: #111111;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
-:root {
-  --background: #F5E6C8;
-  --foreground: #111111;
+@layer base {
+  body {
+    @apply bg-cream text-forest antialiased;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-}
-
-/* Hide scrollbar for cleaner hero scroll animation */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }

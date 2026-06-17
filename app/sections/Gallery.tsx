@@ -1,42 +1,43 @@
+"use client";
+
 import Image from "next/image";
 
-const photos = [
-  { src: "/job1.jpg", alt: "Tree removal job site" },
-  { src: "/job2.jpg", alt: "Crew trimming large tree" },
-  { src: "/job3.jpg", alt: "Tree service in progress" },
-  { src: "/job4.jpg", alt: "Tree cutting work" },
-  { src: "/job5.jpg", alt: "Hardscaping project" },
-  { src: "/job6.jpg", alt: "Cleanup after tree removal" },
-  { src: "/job7.jpg", alt: "Trimming and pruning" },
-  { src: "/job8.jpg", alt: "Finished job site" },
+const gallery = [
+  { src: "/job1.jpg", label: "Hauling" },
+  { src: "/job2.jpg", label: "Removal" },
+  { src: "/job4.jpg", label: "Trimming" },
+  { src: "/job5.jpg", label: "Crane Work" },
+  { src: "/job6.jpg", label: "Climbing" },
+  { src: "/job3.jpg", label: "Site Work" },
+  { src: "/job7.jpg", label: "Cleanup" },
+  { src: "/job8.jpg", label: "Finished" },
 ];
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="relative bg-[#F5E6C8] px-6 py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-12 text-center">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9A227]">
-            Real work
-          </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-[#1A4A32] sm:text-4xl">
-            Proof we show up and get it done
-          </h2>
+    <section id="work" className="py-24 bg-forest text-cream">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="mb-14 text-center">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-gold mb-3">Real work</p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Proof we show up and get it done</h2>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {photos.map((p) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {gallery.map((item) => (
             <div
-              key={p.src}
-              className="group relative aspect-square overflow-hidden rounded-2xl bg-[#1A4A32]/10"
+              key={item.src}
+              className="group relative aspect-square rounded-2xl overflow-hidden bg-forest/50"
             >
               <Image
-                src={p.src}
-                alt={p.alt}
+                src={item.src}
+                alt={item.label}
                 fill
                 className="object-cover transition duration-500 group-hover:scale-105"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
               />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center font-bold text-sm">
+                {item.label}
+              </div>
             </div>
           ))}
         </div>
