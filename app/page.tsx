@@ -8,17 +8,18 @@ import ServiceArea from "./sections/ServiceArea";
 import CallCta from "./sections/CallCta";
 import Footer from "./sections/Footer";
 import StickyCallBar from "./sections/StickyCallBar";
+import { imgSrc } from "@/app/lib/imgSrc";
 
 export const metadata = {
   other: {
     link: [
-      { rel: "preload", as: "image", href: "/frames-scroll/frame_001.webp" },
-      { rel: "preload", as: "image", href: "/frames-scroll/frame_010.webp" },
-      { rel: "preload", as: "image", href: "/frames-scroll/frame_020.webp" },
-      { rel: "preload", as: "image", href: "/frames-scroll/frame_030.webp" },
-      { rel: "preload", as: "image", href: "/frames-scroll/frame_040.webp" },
-      { rel: "preload", as: "image", href: "/frames-scroll/frame_050.webp" },
-      { rel: "preload", as: "image", href: "/frames-scroll/frame_061.webp" },
+      { rel: "preload", as: "image", href: imgSrc("/frames-scroll/frame_001.webp") },
+      { rel: "preload", as: "image", href: imgSrc("/frames-scroll/frame_010.webp") },
+      { rel: "preload", as: "image", href: imgSrc("/frames-scroll/frame_020.webp") },
+      { rel: "preload", as: "image", href: imgSrc("/frames-scroll/frame_030.webp") },
+      { rel: "preload", as: "image", href: imgSrc("/frames-scroll/frame_040.webp") },
+      { rel: "preload", as: "image", href: imgSrc("/frames-scroll/frame_050.webp") },
+      { rel: "preload", as: "image", href: imgSrc("/frames-scroll/frame_061.webp") },
     ],
   },
 };

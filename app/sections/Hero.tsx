@@ -11,23 +11,18 @@ function frameSrc(i: number) {
   return imgSrc(`/frames-scroll/frame_${String(i).padStart(3, "0")}.webp`);
 }
 
-export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+function usePreloadedFrames() {
   const [readyCount, setReadyCount] = useState(0);
-
+  const [failed, setFailed] = useState(false);
   const framesRef = useRef<HTMLImageElement[]>([]);
-  const frameIndexRef = useRef(0);
   const readyRef = useRef(false);
+  const MIN_READY = 15;
 
-  const MIN_READY = 15; // Start animating once first 15 frames are loaded
-
-  // Preload frames into Image objects
   useEffect(() => {
     let mounted = true;
     const frames: HTMLImageElement[] = [];
     let loadedCount = 0;
+    let errorCount = 0;
 
     const onFrameLoad = () => {
       if (!mounted) return;
@@ -36,26 +31,63 @@ export default function Hero() {
       if (loadedCount >= MIN_READY && !readyRef.current) {
         readyRef.current = true;
       }
-      if (loadedCount >= FRAME_COUNT) {
+      if (loadedCount + errorCount >= FRAME_COUNT) {
         framesRef.current = frames;
+        if (loadedCount < MIN_READY) setFailed(true);
+      }
+    };
+
+    const onFrameError = () => {
+      if (!mounted) return;
+      errorCount++;
+      if (loadedCount + errorCount >= FRAME_COUNT) {
+        framesRef.current = frames;
+        if (loadedCount < MIN_READY) setFailed(true);
       }
     };
 
     for (let i = 0; i < FRAME_COUNT; i++) {
       const img = new window.Image();
-      img.src = frameSrc(i);
+      const src = frameSrc(i);
+      // Guard against double-prefixing if imgSrc was already applied
+      img.src = src.startsWith("/steve-trees-website")
+        ? src
+        : src.startsWith("/")
+        ? src
+        : `/${src}`;
       img.decoding = i < MIN_READY ? "sync" : "async";
       img.loading = i < MIN_READY ? "eager" : "lazy";
       img.onload = onFrameLoad;
-      img.onerror = onFrameLoad;
+      img.onerror = onFrameError;
       frames.push(img);
     }
     framesRef.current = frames;
 
+    // If a frame errors before any load, show fallback after short timeout
+    const failSafe = setTimeout(() => {
+      if (!mounted) return;
+      if (!readyRef.current) setFailed(true);
+    }, 8000);
+
     return () => {
       mounted = false;
+      clearTimeout(failSafe);
     };
   }, []);
+
+  return { framesRef, readyCount, readyRef, failed };
+}
+
+export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const frameIndexRef = useRef(0);
+  const MIN_READY = 15;
+
+  const { framesRef, readyCount, readyRef, failed } = usePreloadedFrames();
+  const canvasVisible = readyRef.current && !failed;
+  const posterVisible = !readyRef.current && !failed;
 
   // Canvas drawing loop
   useEffect(() => {
@@ -162,20 +194,20 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Logo reveal curve
-  const logoReveal = Math.min(1, Math.max(0, (scrollProgress - 0.2) / 0.55));
+  // Logo reveal curve (disabled when canvas frames failed; fallback already shows the logo)
+  const logoReveal = failed ? 0 : Math.min(1, Math.max(0, (scrollProgress - 0.2) / 0.55));
   const logoScale = 0.85 + logoReveal * 0.35;
 
   return (
     <>
       <section ref={sectionRef} className="relative h-[300vh] bg-forest">
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-black relative">
-          {/* Poster image shown immediately while frames load */}
+          {/* Poster image shown immediately while frames load, and stays visible if frames fail */}
           <img
             src={imgSrc("/frame-poster.webp")}
             alt="Tree removal in progress"
             className="absolute inset-0 w-full h-full object-cover md:object-contain transition-opacity duration-500"
-            style={{ opacity: readyRef.current ? 0 : 1, pointerEvents: "none" }}
+            style={{ opacity: posterVisible ? 1 : 0, pointerEvents: "none" }}
             decoding="sync"
             loading="eager"
           />
@@ -183,7 +215,7 @@ export default function Hero() {
           <canvas
           ref={canvasRef}
           className="absolute inset-0 w-full h-full transition-opacity duration-500"
-          style={{ opacity: readyRef.current ? 1 : 0, pointerEvents: "none" }}
+          style={{ opacity: canvasVisible ? 1 : 0, pointerEvents: "none" }}
           />
 
           {/* Darkening gradient for text readability */}
@@ -205,9 +237,34 @@ export default function Hero() {
           </div>
 
           {/* Loading state */}
-          {readyCount < MIN_READY && (
+          {!failed && readyCount < MIN_READY && (
             <div className="absolute inset-0 flex items-center justify-center bg-forest/50 text-white/60 text-sm font-semibold pointer-events-none">
               Loading...
+            </div>
+          )}
+
+          {/* Graceful fallback: show static poster + logo if scroll frames fail to load */}
+          {failed && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <img
+                src={imgSrc("/frame-poster.webp")}
+                alt="Tree removal in progress"
+                className="absolute inset-0 w-full h-full object-cover md:object-contain"
+                decoding="sync"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-forest/30 via-transparent to-forest/70" />
+              <div className="relative z-10 w-[72vw] max-w-[560px] md:max-w-[680px]">
+                <Image
+                  src={imgSrc("/logo-hero-t.png")}
+                  alt="Steve's Trees"
+                  width={680}
+                  height={280}
+                  className="w-full h-auto drop-shadow-2xl"
+                  priority
+                  unoptimized
+                />
+              </div>
             </div>
           )}
 
@@ -233,10 +290,10 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Scroll hint */}
+          {/* Scroll hint (hidden when failed fallback is active) */}
           <div
             className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/80 transition-opacity duration-500"
-            style={{ opacity: scrollProgress > 0.15 ? 0 : 1 }}
+            style={{ opacity: failed || scrollProgress > 0.15 ? 0 : 1 }}
           >
             <span className="text-xs font-semibold uppercase tracking-widest">
               Scroll to see it fall
