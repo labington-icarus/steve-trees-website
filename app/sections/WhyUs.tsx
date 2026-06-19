@@ -40,7 +40,7 @@ export default function WhyUs() {
           <div>
             <p className="text-sm font-bold tracking-widest uppercase text-lime mb-3">Why Steve's Trees</p>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-              Built on referrals, not flashy ads
+              Local experts who show up and get it done
             </h2>
             <p className="text-lg text-white/80 mb-10 leading-relaxed">
               Steve's Trees serves homeowners and businesses across Fredericksburg with honest work, fair pricing, and a crew that shows up when promised. No surprises, no mess left behind.

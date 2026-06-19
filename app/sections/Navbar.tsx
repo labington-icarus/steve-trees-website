@@ -21,18 +21,7 @@ export default function Navbar() {
         scrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <Image
-            src={imgSrc("/logo.png")}
-            alt="Steve's Trees"
-            width={160}
-            height={40}
-            className="h-10 w-auto"
-            priority
-          />
-        </a>
-
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-center relative">
         <div className="hidden lg:flex items-center gap-8 font-semibold text-sm">
           <a href="#services" className="hover:text-pine transition">Services</a>
           <a href="#work" className="hover:text-pine transition">Our Work</a>
@@ -48,7 +37,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="lg:hidden text-forest"
+          className="lg:hidden text-forest absolute right-0 top-1/2 -translate-y-1/2"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >

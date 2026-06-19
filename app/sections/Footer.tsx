@@ -11,11 +11,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
           <div className="text-center md:text-left">
             <Image
-              src={imgSrc("/logo.png")}
+              src={imgSrc("/logo-hero-t.png")}
               alt="Steve's Trees"
-              width={192}
-              height={48}
-              className="h-12 w-auto mb-3 mx-auto md:mx-0"
+              width={256}
+              height={100}
+              className="h-16 w-auto mb-3 mx-auto md:mx-0"
             />
             <p className="text-white/60">
               Tree removal, trimming, stump grinding, and hardscaping in Fredericksburg, VA.

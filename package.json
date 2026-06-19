@@ -21,9 +21,13 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.184.1",
+    "canvas": "^3.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "gl": "^8.1.6",
     "tailwindcss": "^4",
+    "three": "^0.184.0",
     "typescript": "^5"
   }
 }
